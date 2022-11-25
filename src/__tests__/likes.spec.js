@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../");
+const app = require("..");
 
 describe("Likes", () => {
   it("should be able to give a like to the repository", async () => {
@@ -15,6 +15,7 @@ describe("Likes", () => {
       `/repositories/${repository.body.id}/like`
     );
 
+
     expect(response.body).toMatchObject({
       likes: 1
     });
@@ -26,6 +27,7 @@ describe("Likes", () => {
     expect(response.body).toMatchObject({
       likes: 2
     });
+
   });
 
   it("should not be able to give a like to a non existing repository", async () => {
@@ -33,4 +35,5 @@ describe("Likes", () => {
       .post(`/repositories/123/like`)
       .expect(404);
   });
+
 });

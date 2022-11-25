@@ -4,6 +4,7 @@ const app = require("../");
 const { validate: isUuid } = require("uuid");
 
 describe("Projects", () => {
+
   it("should be able to create a new repository", async () => {
     const response = await request(app)
       .post("/repositories")
@@ -22,6 +23,7 @@ describe("Projects", () => {
       likes: 0
     });
 
+
     const { body: repositoriesList } = await request(app).get("/repositories");
 
     expect(repositoriesList).toEqual(
@@ -35,6 +37,7 @@ describe("Projects", () => {
         }
       ])
     );
+
   });
 
   it("should be able to list the projects", async () => {
@@ -138,4 +141,5 @@ describe("Projects", () => {
       .delete(`/repositories/123`)
       .expect(404);
   });
+
 });
